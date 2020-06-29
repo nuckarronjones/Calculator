@@ -1,0 +1,50 @@
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:#eee;
+}
+#mainBody{
+	height:500px;
+	width:375px;
+	background-color:grey;
+	border-radius: 20px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+	display: grid;
+	grid-template-rows:150px 350px;
+	grid-template-areas: 
+	"display"
+	"buttons";
+}
+	#screen{
+		border-radius: 20px;
+		margin:20px;
+		grid-area:display;
+		background-color:black;
+	}
+	#body{
+		border-radius: 20px;
+		margin:20px;
+		grid-area:buttons;
+		background-color:lightgrey;
+
+		display: grid;
+		grid-template-rows: repeat(5,10px);
+		grid-template-columns: repeat(4,10px);
+		grid-template-areas:
+		"AC plusminus percent divide"
+		"sev eig nin multiply"
+		"fou fiv six minus"
+		"one two thr plus"
+		"zer zer dot equals";
+		grid-gap:5px;
+	}
+	.buttons{
+		height:50px;
+		width:50px;
+	}
