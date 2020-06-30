@@ -4,47 +4,84 @@
 }
 body{
 	background:#eee;
+	font-family: helvetica;
+	font-size: 18pt;
 }
+table{
+	border-spacing: 10px;
+}
+td{
+	width:50px;height: 50px;
+	text-align: center;
+	border-radius: 50%;
+}
+	.zeroBttn{
+		border-top-left-radius: 50px;
+		border-top-right-radius: 50px;
+		border-bottom-left-radius: 50px;
+		border-bottom-right-radius: 50px;
+		text-align: left;
+		padding-left: 20px;
+	}
+	.lightGreyBttn{
+		background-color: #D4D4D2;
+		color:#1C1C1C;
+	}
+	.greyBttn{
+		background-color: #505050;
+		color: white;
+	}
+	.orangeBttn{
+		background-color: #FF9500;
+		color: white;
+	}
+
 #mainBody{
-	height:500px;
-	width:375px;
-	background-color:grey;
-	border-radius: 20px;
+	height:550px;
+	width:300px;
+	background-image: linear-gradient(grey, lightgrey);
+	border-radius: 40px;
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 
 	display: grid;
-	grid-template-rows:150px 350px;
+	grid-template-rows:200px 350px;
 	grid-template-areas: 
 	"display"
 	"buttons";
 }
 	#screen{
-		border-radius: 20px;
-		margin:20px;
+		border-top-left-radius: 40px;
+		border-top-right-radius: 40px;
+		margin-top:5px;margin-left:5px;margin-right:5px;
 		grid-area:display;
 		background-color:black;
+		color: white;
+		padding-right:30px;
 	}
+		#screenContainer{
+			position: relative;
+			/*background-color: red; DEBUG*/
+			width:100%;
+			height:100%;
+		}
+		#number{
+			position: absolute;
+			/*background-color: blue; DEBUG*/
+			right:0;
+			bottom:0;
+			font-size: 50pt;
+		}
 	#body{
-		border-radius: 20px;
-		margin:20px;
+		border-bottom-left-radius: 40px;
+		border-bottom-right-radius: 40px;
 		grid-area:buttons;
-		background-color:lightgrey;
+		background-color:black;
+		margin-bottom:5px;margin-left:5px;margin-right:5px;
 
 		display: grid;
-		grid-template-rows: repeat(5,10px);
-		grid-template-columns: repeat(4,10px);
-		grid-template-areas:
-		"AC plusminus percent divide"
-		"sev eig nin multiply"
-		"fou fiv six minus"
-		"one two thr plus"
-		"zer zer dot equals";
-		grid-gap:5px;
-	}
-	.buttons{
-		height:50px;
-		width:50px;
+		justify-content: center;
+		align-content: center;
 	}
