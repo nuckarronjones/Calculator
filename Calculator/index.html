@@ -10,12 +10,22 @@
 <head>
 	<title>MyCalculator</title>
 	<link rel="stylesheet" type="text/css" href="css.css">
-	
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
 </head>
 <body>
-	<div id="mainBody">
+	<div id="mainBody" class="noselect">
+
+		<div id="glare"></div>
 
 		<div id="screen">
+
+			<div id="statsBar">
+				<img class="rightFloat" id="battery" src="./images/battery.png"><span class="rightFloat" id="LTE">LTE</span>
+				<img class="rightFloat" id="battery" src="./images/bars.png">
+				<span class="rightLeft">11:01</span>
+			</div>
+
 			<div id="screenContainer">
 				<div id="number">0</div>
 			</div>
@@ -50,7 +60,7 @@
 				<tr>
 					<td id ="num" colspan="2" class="zeroBttn greyBttn">0</td>
 					<td id="num" class="greyBttn">.</td>
-					<td id= "operations" class="orangeBttn">=</td>
+					<td id= "equals" class="orangeBttn">=</td>
 				</tr>
 			</table>
 		</div>
