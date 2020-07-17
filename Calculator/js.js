@@ -40,9 +40,12 @@ function formatNegative(value){
 	}
 }
 
-function numberAnimate(e,idName){
-  	//animation changes
-  	console.log(idName + " IDNAME")
+function buttonAnimate(e,idName){
+
+	//document.getElementById("operations").classList.add("shit")
+
+	// alert(e.target.classList.contains("lightGreyBttn"))
+	// alert(e.target.classList)
 
   	switch(idName){
   		case "num":
@@ -53,99 +56,170 @@ function numberAnimate(e,idName){
   			break
   		case "equals":
   		case "operations":
+  			e.target.style.animationFillMode = "forwards"
   			e.target.style.animationName = "orangeBttn"
+  			e.target.style.color = "#FF9500"
+  			e.target.classList.add('active')
   			break
   	}
 
-	e.target.style.animationDuration = "1.2s"
-	e.target.style.animationFillMode = "forwards"
-
-	setTimeout(()=>{//clear animation styles so button can be pressed again with animation
-		e.target.style.animationName = ""
-		e.target.style.animationDuration = ""
-		e.target.style.animationFillMode = ""
-	},1201)//additional second to let animation finish out
+	if(idName == "greyBttn" || idName == "lightGreyBttn"){//only reset non operations/equal button animations
+		setTimeout(()=>{//clear animation styles so button can be pressed again with animation
+			e.target.style.animationName = ""
+			e.target.style.animationDuration = ""
+			e.target.style.animationFillMode = ""
+		},1201)//additional second to let animation finish out
+	}
 }
 
 
 document.addEventListener("click",(e)=>{//listens for a button press
 
-	let click = e.target.id
+	//let click = e.target.id
 	let value = e.target.innerHTML
+	let classVals = e.target.classList
 
-	numberAnimate(e,click)
+	buttonAnimate(e,click)
 
-	switch(click){
-		case "num":
-		// animation-name: example;
-  		//animation-duration: 4s;
+	if(classVals.contains("num")){
 
-			if(calculator.firstNumber){//checks for removal of starter 0, when someone first opens webapp/reloads. Changes initial 0 value
-				calculator.wipeScreen()
-				calculator.firstNumber = false
-			}
-			if(calculator.operationToBePerformed == "yes" || calculator.operationToBePerformed == "completed"){
-				console.log("operation to be performed")
-				calculator.wipeScreen()
-			}
+		console.log("number yes")
 
-			calculator.display.innerHTML += e.target.innerHTML
+		if(calculator.firstNumber){//checks for removal of starter 0, when someone first opens webapp/reloads. Changes initial 0 value
+			calculator.wipeScreen()
+			calculator.firstNumber = false
+		}
+		if(calculator.operationToBePerformed == "yes" || calculator.operationToBePerformed == "completed"){
+			console.log("operation to be performed")
+			calculator.wipeScreen()
+		}
 
-			//console.log(calculator.display.innerHTML.length)
+		calculator.display.innerHTML += e.target.innerHTML
 
-			break
-
-		case "function":
-			if(value == "AC"){
-				console.log("AC Chosen")//debug
-				calculator.display.innerHTML = "0"
-				calculator.firstNumber = true
-				calculator.reset()
-			}
-			else if(value == "+/-"){
-				console.log("+/- chosen")//debug
-				formatNegative(calculator.display.innerHTML)
-				//calculator.display.innerHTML += "-"
-			}
-			else if(value == "%"){
-				console.log("% chosen")//debug
-			}
-
-			break
-
-		case "operations":
-
-			calculator.operationToBePerformed = "yes"
-			
-			calculator.xnum = calculator.display.innerHTML
-
-			if(value == "÷"){
-				//console.log("percent Chosen")//debug
-				calculator.operation = "/"
-			}
-			else if(value == "×"){
-				//console.log("times chosen")//debug
-				calculator.operation = "*"
-			}
-			else if(value == "-"){
-				//console.log("- chosen")//debug
-				calculator.operation = "-"
-			}
-			else if(value == "+"){
-				//console.log("+ Chosen")//debug
-				calculator.operation = "+"
-			}
-
-			break
-
-		case "equals":
-
-			console.log(calculator)
-
-			calculator.operationToBePerformed = "completed"
-
-			calculator.evaluate(calculator.xnum,calculator.operation,calculator.display.innerHTML)
-
-			break
 	}
+
+	else if(classVals.contains("function")){
+
+		console.log("functions yes")
+
+		if(value == "AC"){
+			console.log("AC Chosen")//debug
+			calculator.display.innerHTML = "0"
+			calculator.firstNumber = true
+			calculator.reset()
+		}
+		else if(value == "+/-"){
+			console.log("+/- chosen")//debug
+			formatNegative(calculator.display.innerHTML)
+			//calculator.display.innerHTML += "-"
+		}
+		else if(value == "%"){
+			console.log("% chosen")//debug
+		}
+	}
+
+	else if(classVals.contains("operations")){
+
+		console.log("operations yes")
+
+		calculator.operationToBePerformed = "yes"
+			
+		calculator.xnum = calculator.display.innerHTML
+
+		if(value == "÷"){
+			//console.log("percent Chosen")//debug
+			calculator.operation = "/"
+		}
+		else if(value == "×"){
+			//console.log("times chosen")//debug
+			calculator.operation = "*"
+		}
+		else if(value == "-"){
+			//console.log("- chosen")//debug
+			calculator.operation = "-"
+		}
+		else if(value == "+"){
+			//console.log("+ Chosen")//debug
+			calculator.operation = "+"
+		}
+	}
+
+	else if(classVals.contains("equals")){
+
+		console.log("equals yes")
+
+		console.log(calculator)
+
+		calculator.operationToBePerformed = "completed"
+		calculator.evaluate(calculator.xnum,calculator.operation,calculator.display.innerHTML)
+	}
+	// switch(click){
+	// 	case "num":
+
+	// 		if(calculator.firstNumber){//checks for removal of starter 0, when someone first opens webapp/reloads. Changes initial 0 value
+	// 			calculator.wipeScreen()
+	// 			calculator.firstNumber = false
+	// 		}
+	// 		if(calculator.operationToBePerformed == "yes" || calculator.operationToBePerformed == "completed"){
+	// 			console.log("operation to be performed")
+	// 			calculator.wipeScreen()
+	// 		}
+
+	// 		calculator.display.innerHTML += e.target.innerHTML
+
+	// 		break
+
+	// 	case "function":
+	// 		if(value == "AC"){
+	// 			console.log("AC Chosen")//debug
+	// 			calculator.display.innerHTML = "0"
+	// 			calculator.firstNumber = true
+	// 			calculator.reset()
+	// 		}
+	// 		else if(value == "+/-"){
+	// 			console.log("+/- chosen")//debug
+	// 			formatNegative(calculator.display.innerHTML)
+	// 			//calculator.display.innerHTML += "-"
+	// 		}
+	// 		else if(value == "%"){
+	// 			console.log("% chosen")//debug
+	// 		}
+
+	// 		break
+
+	// 	case "operations":
+
+	// 		calculator.operationToBePerformed = "yes"
+			
+	// 		calculator.xnum = calculator.display.innerHTML
+
+	// 		if(value == "÷"){
+	// 			//console.log("percent Chosen")//debug
+	// 			calculator.operation = "/"
+	// 		}
+	// 		else if(value == "×"){
+	// 			//console.log("times chosen")//debug
+	// 			calculator.operation = "*"
+	// 		}
+	// 		else if(value == "-"){
+	// 			//console.log("- chosen")//debug
+	// 			calculator.operation = "-"
+	// 		}
+	// 		else if(value == "+"){
+	// 			//console.log("+ Chosen")//debug
+	// 			calculator.operation = "+"
+	// 		}
+
+	// 		break
+
+	// 	case "equals":
+
+	// 		console.log(calculator)
+
+	// 		calculator.operationToBePerformed = "completed"
+
+	// 		calculator.evaluate(calculator.xnum,calculator.operation,calculator.display.innerHTML)
+
+	// 		break
+	// }
 })

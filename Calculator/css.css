@@ -58,14 +58,20 @@ td{
 	.lightGreyBttn{
 		background-color: #D4D4D2;
 		color:#1C1C1C;
+		animation-fill-mode: forwards;
+		animation-duration: 1.2s;
 	}
 	.greyBttn{
 		background-color: #505050;
 		color: white;
+		animation-fill-mode: forwards;
+		animation-duration: 1.2s;
 	}
 	.orangeBttn{
 		background-color: #FF9500;
 		color: white;
+		animation-fill-mode: forwards;
+		animation-duration: 1.2s;
 	}
 #glare{
 	position: absolute;
@@ -76,7 +82,7 @@ td{
 	border-top-right-radius: 40px;
 	border-bottom-left-radius: 40px;
 	border-bottom-right-radius: 40px;
-	background: linear-gradient(105deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 23%, rgba(227,227,227,1) 52%, rgba(0,0,0,1) 100%);
+	background: linear-gradient(140deg, rgba(0,0,0,1) 0%, rgba(56,56,56,1) 35%, rgba(61,61,61,1) 58%, rgba(0,0,0,1) 100%);
 	opacity: .2;
 	pointer-events: none;/*allows buttons to be pressed behind div*/
 }
